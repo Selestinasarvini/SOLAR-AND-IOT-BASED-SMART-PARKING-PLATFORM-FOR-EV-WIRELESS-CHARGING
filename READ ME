@@ -1,0 +1,328 @@
+# ⚡ Solar and IoT-Based Smart Parking Platform for EV Wireless Charging
+
+<div align="center">
+
+![IEEE Published](https://img.shields.io/badge/IEEE-ICOECA--2026-blue?style=for-the-badge&logo=ieee)
+![ESP32](https://img.shields.io/badge/ESP32-IoT-red?style=for-the-badge&logo=espressif)
+![Solar](https://img.shields.io/badge/Solar-Powered-orange?style=for-the-badge&logo=sun)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+**A fully automated, solar-powered, wireless EV charging infrastructure with IoT monitoring, RFID authentication, and cloud-based management.**
+
+*Published at the 6th International Conference on Expert Clouds and Applications — IEEE ICOECA-2026*
+*R.V. College of Engineering, Bengaluru, India | March 9–11, 2026*
+
+</div>
+
+---
+
+## 📌 Overview
+
+As EV adoption accelerates globally, the infrastructure supporting it must become smarter, greener, and fully autonomous. This platform addresses that challenge by combining:
+
+- **Wireless Power Transfer (WPT)** via inductive coupling — no cables, no connectors
+- **Solar photovoltaic energy** as the primary charging source
+- **IoT-based real-time monitoring** through an ESP32 microcontroller
+- **RFID-secured access** with automated billing and slot reservation
+- **Cloud-connected web dashboard** for users and administrators
+
+---
+
+## 🖥️ UI Design & Dashboard Screenshots
+
+### 🔐 User & Vehicle Details Panel
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🅿 SmartPark EV    Dashboard  Parking  Recharge  Payment  Logout│
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  👤 User & Vehicle Details                                      │
+│                                                                 │
+│  OWNER NAME                    VEHICLE MODEL                    │
+│  ┌─────────────────┐           ┌─────────────────┐             │
+│  │ 👤 Priya        │           │ 🚗 Audi         │             │
+│  └─────────────────┘           └─────────────────┘             │
+│                                                                 │
+│  RFID NUMBER                   REGISTRATION NUMBER              │
+│  ┌─────────────────┐           ┌─────────────────┐             │
+│  │ $0005358B02     │           │ TN23K8956       │             │
+│  └─────────────────┘           └─────────────────┘             │
+│                                                                 │
+│  WALLET BALANCE                                                 │
+│  ┌─────────────────┐                                           │
+│  │ 💳 ₹770.00      │                                           │
+│  └─────────────────┘                                           │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 🅿️ Parking Slot Connection Panel
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🅿 SmartPark EV    Dashboard  Parking  Recharge  Payment  Logout│
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│                    ┌───────────────┐                            │
+│                    │               │                            │
+│                    │  Your Parking │                            │
+│                    │     Slot      │                            │
+│                    │               │                            │
+│                    └───────────────┘                            │
+│                                                                 │
+│                    [ Not Connect ]                              │
+│                                                                 │
+│               [⏻ Connect]    [⏻ Disconnect]                    │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 💳 Payment Transaction History
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🅿 SmartPark EV    Dashboard  Parking  Recharge  Payment  Logout│
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  📄 Payment Transaction History                                 │
+│                                                                 │
+│  USER DETAILS          STATUS                  READING TIME     │
+│  ─────────────────────────────────────────────────────────────  │
+│  P Priya               🔴 Charge Disconnected  03:48:55 PM      │
+│    RFID: $0005358...                           Mar 18, 2026     │
+│                                                                 │
+│  P Priya               🟢 Charge Connected     03:47:25 PM      │
+│    RFID: $0005358...                           Mar 18, 2026     │
+│                                                                 │
+│  P Priya               🔴 Charge Disconnected  03:31:08 PM      │
+│    RFID: $0005358...                           Mar 18, 2026     │
+│                                                                 │
+│  P Priya               🟢 Charge Connected     03:30:47 PM      │
+│    RFID: $0005358...                           Mar 18, 2026     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 📊 Sensor Readings History
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🅿 SmartPark EV    Dashboard  Parking  Recharge  Payment  Logout│
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  📊 Sensor Readings History            [← Back to Dashboard]   │
+│                                                                 │
+│  #    ⚡ VOLTAGE    ⚡ CURRENT    📦 UNITS    🕐 READING TIME   │
+│  ───────────────────────────────────────────────────────────── │
+│  1    10.81 V       1.74 A        0.00 kWh   03:48:26 PM       │
+│  2    11.44 V       1.55 A        0.00 kWh   03:48:20 PM       │
+│  3    10.76 V       1.35 A        0.00 kWh   03:48:15 PM       │
+│  4    10.79 V       1.13 A        0.00 kWh   03:48:11 PM       │
+│  5    11.88 V       1.08 A        0.00 kWh   03:48:07 PM       │
+│  6    11.87 V       1.09 A        0.00 kWh   03:48:00 PM       │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🏗️ System Architecture
+
+```
+                    ┌─────────────────────────────────┐
+                    │         ☁️  IoT Cloud Server      │
+                    │   Logs · Analytics · Billing     │
+                    │       Slot Monitoring            │
+                    └──────────────┬──────────────────┘
+                                   │ Data / Alerts / Control
+                    ┌──────────────▼──────────────────┐
+   ☀️ Solar Panel ──►│                                 │◄── 🔑 RFID Card
+   🔋 Battery    ──►│     ESP32 IoT Controller        │
+   ⚡ DC Power   ──►│  · Data Processing               │
+                    │  · RFID Authentication           │
+                    │  · Control Relay / Switch        │
+                    └──────────────┬──────────────────┘
+                                   │ Inductive Coupling
+                    ┌──────────────▼──────────────────┐
+                    │     🚗 Wireless EV Charging      │
+                    │       EV Receiver Coil           │
+                    └─────────────────────────────────┘
+
+   👤 EV User ──► RFID Auth ──► SmartPark Platform ──► 👨‍💼 Admin
+                                        │
+                                  Cloud Server
+                                        │
+                               Sensors & ESP32
+```
+
+---
+
+## ⚙️ Key Features
+
+| Feature | Description |
+|---|---|
+| ⚡ Wireless Charging | Inductive coupling WPT — no physical connectors needed |
+| ☀️ Solar Powered | PV panels contribute 65–70% energy per charging session |
+| 🔐 RFID Auth | Secure tag-based access with automated billing |
+| 📡 IoT Monitoring | Real-time sensor data streamed to cloud via ESP32 Wi-Fi |
+| 🖥️ Web Dashboard | Live slot status, payments, sensor history, admin controls |
+| 🔋 Battery Backup | Uninterrupted operation during low solar or grid outage |
+| ☁️ Cloud Integration | MySQL + PHP cloud database for session logs and analytics |
+| 🔔 Alerts | OLED display + buzzer for charging status and fault alerts |
+
+---
+
+## 📊 Performance Metrics
+
+### Functional Validation
+| Parameter | Observed Performance |
+|---|---|
+| RFID Authentication Success Rate | 100% |
+| Wireless Charging Initiation | Successful in all trials |
+| Slot Detection Accuracy | 100% |
+| Charging State Detection | Accurate (Idle / Charging / Complete) |
+| Manual Intervention Required | None |
+
+### Energy Usage & Source Distribution
+| Parameter | Value |
+|---|---|
+| Average Charging Power | 48–52 W |
+| Average Charging Duration | 25–30 minutes |
+| Energy Consumed per Session | 0.40–0.45 kWh |
+| Solar Energy Contribution | 65–70% |
+| Battery Contribution | 20–25% |
+| Grid Dependency | 5–10% |
+| Overall System Efficiency | ~85% |
+
+### System Response Times
+| Operation | Average Time |
+|---|---|
+| RFID Authentication | 0.8–1.2 s |
+| Charging Initiation | 1.5–2.0 s |
+| Sensor Data Upload to Cloud | 2–3 s |
+| Dashboard Update Latency | < 2 s |
+
+### Reliability & Uptime
+| Metric | Observed Value |
+|---|---|
+| Continuous Operation Duration | 72 hours |
+| System Uptime | 98.5% |
+| Communication Failures | < 2% |
+| Sensor Faults | None observed |
+| Unauthorized Access Blocked | 100% |
+
+---
+
+## 🛠️ Tech Stack
+
+### Hardware
+| Component | Role |
+|---|---|
+| ESP32 Microcontroller | Central IoT controller — Wi-Fi, sensors, relay, RFID |
+| WPT Kit (Inductive) | Wireless power transfer to EV receiver coil |
+| RFID Reader (RC522) + Tags | Secure user authentication |
+| Solar PV Panel | Primary renewable energy source |
+| 12V Lithium Battery | Energy storage and backup |
+| Voltage & Current Sensors | Real-time charging monitoring |
+| Relay Module | Circuit switching based on auth and sensor state |
+| OLED Display | On-device status display |
+| Buzzer | Audible alerts for events and faults |
+| Voltage Regulators | Stable supply to all electronic components |
+
+### Software
+| Tool / Platform | Purpose |
+|---|---|
+| Arduino IDE + Embedded C/C++ | ESP32 firmware development |
+| PHP | Web-based dashboard backend |
+| MySQL | Cloud database for sessions, billing, and logs |
+| HTML / CSS / JS | Frontend dashboard UI |
+| IoT Cloud (iotcloud22.in) | Real-time data hosting and monitoring |
+
+---
+
+## 💰 Estimated Implementation Cost
+
+| Component | Cost (₹) |
+|---|---|
+| ESP32 Microcontroller | 500 |
+| WPT Kit | 3,500 |
+| Current Sensor | 300 |
+| Voltage Sensor | 300 |
+| RFID Reader & Tags | 700 |
+| Relay | 200 |
+| Charging Circuit | 1,000 |
+| Battery | 1,500 |
+| OLED Display | 800 |
+| Solar PV Panel | 5,000 |
+| Miscellaneous | 1,500 |
+| **Prototype Total** | **₹14,300** |
+| Overhead (dashboard, cloud, testing) | ₹3,000 |
+| **Grand Total** | **₹17,300** |
+
+---
+
+## 🗂️ Project Structure
+
+```
+Solar-IoT-Smart-Parking-EV/
+│
+├── firmware/
+│   ├── main.ino               # ESP32 main firmware
+│   ├── rfid_auth.ino          # RFID authentication logic
+│   ├── sensor_monitor.ino     # Voltage & current sensing
+│   └── cloud_upload.ino       # IoT cloud communication
+│
+├── dashboard/
+│   ├── index.php              # Main dashboard entry
+│   ├── parking.php            # Slot management
+│   ├── payment.php            # Transaction history
+│   ├── sensor_data.php        # Sensor readings view
+│   └── recharge.php           # Wallet recharge
+│
+├── database/
+│   └── smartpark_ev.sql       # MySQL schema and seed data
+│
+├── docs/
+│   ├── system_architecture.png
+│   ├── circuit_diagram.png
+│   └── project_report.pdf
+│
+└── README.md
+```
+
+---
+
+## 🌍 SDG Alignment
+
+| SDG Goal | Relevance |
+|---|---|
+| ⚡ SDG 7 — Affordable and Clean Energy | Solar-powered charging reduces fossil fuel dependency |
+| 🏭 SDG 9 — Industry, Innovation & Infrastructure | Smart EV infrastructure for modern urban needs |
+| 🏙️ SDG 11 — Sustainable Cities & Communities | Designed for smart city deployment |
+| ♻️ SDG 12 — Responsible Consumption & Production | Optimized energy usage with minimal waste |
+| 🌿 SDG 13 — Climate Action | Reduced grid dependency and carbon footprint |
+
+---
+
+## 📄 Publication
+
+> **Solar and IoT-Based Smart Parking Platform for EV Wireless Charging**
+> Proceedings of the 6th International Conference on Expert Clouds and Applications **(IEEE ICOECA-2026)**
+> DVD Part Number: CFP26VE3-DVD | ISBN: 979-8-3315-7450-5
+> R.V. College of Engineering, Bengaluru, India | March 9–11, 2026
+
+---
+
+## 👩‍💻 Authors
+
+| Name | Institution | Email |
+|---|---|---|
+| Selestinasarvini R | Sathyabama IST, Chennai | heavinjeevanraj@gmail.com |
+
+
+---
+
+<div align="center">
+
+Made with ❤️ at Sathyabama Institute of Science and Technology, Chennai
+
+⭐ If you found this project useful, please consider giving it a star!
+
+</div>
